@@ -1,40 +1,38 @@
+// import fs (filesystem) in core module
 const fs = require("fs");
+const { stdin, stdout } = require("process");
 
-/// buat file secara synchronous
-// fs.writeFileSync("test.txt", "Hello core module");
+// write file synchronous
+// //fs.writeFileSync("text.txt", `What'up Nodee`);
+// write file asynchronous
+// //`fs.writeFile("text.txt", "you man", (e) => {
+//  //  console.log(e);
+// //`});
 
-// // secara asynchronous
-// fs.writeFile("test.txt", "create file secara asynchronous", (e) => {
-//    if (e) throw e;
-//    console.log("The file has been created");
-// });
+// read file synchronous
+// //const file = fs.readFileSync("text.txt", "utf-8");
+// //console.log(file);
+// read file asynchronous
+// //fs.readFile("text.txt", "utf-8", (e, data) => {
+//  //  if (e) throw e;
+//  //  console.log(data);
+// //});
 
-// membaca isi file synchronous
-// console.log(fs.readFileSync("test.txt", "utf-8"));
-
-// secara asynchronous
-// fs.readFile("test.txt", "utf-8", (err, data) => {
-//    if (err) throw err;
-//    console.log(data);
-// });
-
-// readline dari inputan di terminal
 const readline = require("readline");
-// console.log(readline);
 const rl = readline.createInterface({
-   input: process.stdin,
-   output: process.stdout,
+   input: stdin,
+   output: stdout,
 });
-rl.question("What is your name ? ", (nama) => {
-   // add multiple question
-   rl.question("Your phone number = ", (noHP) => {
-      // console.log(`Thank you ${nama}, your phone number ${noHP}`);
-      const contact = { nama, noHP };
-      const file = fs.readFileSync("data/contacts.json", "utf8");
+rl.question("What is your name boi ? ", (name) => {
+   // console.log("thanks");
+   rl.question("Your phone number here = ", (phone) => {
+      const contact = { name, phone };
+      const file = fs.readFileSync("data/contacts.json", "utf-8");
       const contacts = JSON.parse(file);
+
       contacts.push(contact);
       fs.writeFileSync("data/contacts.json", JSON.stringify(contacts, null, 2));
-      console.log(`Thanks for the data ${nama}`);
+      console.log(`Thats cool, Thanks kid`);
       rl.close();
    });
 });
