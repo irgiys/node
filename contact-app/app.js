@@ -1,12 +1,30 @@
 // mengambil argument dari command line
 const yargs = require("yargs");
-console.log(yargs.argv);
-// const { tulisPertanyaan, simpanPertanyaan } = require("./contacts");
-// const main = async () => {
-//    const nama = await tulisPertanyaan("Inputkan nama anda : ");
-//    const email = await tulisPertanyaan("Inputkan email anda : ");
-//    const noHP = await tulisPertanyaan("Inputkan nomor HP anda :");
-//    simpanPertanyaan(nama, email, noHP);
-// };
+const { simpanPertanyaan } = require("./contacts");
 
-// main();
+yargs.command({
+   command: "add",
+   describe: "Menambahkan contact baru",
+   builder: {
+      nama: {
+         describe: "Nama lengkap",
+         demandOption: true,
+         type: "string",
+      },
+      email: {
+         describe: "Email",
+         demandOption: false,
+         type: "string",
+      },
+      noHP: {
+         describe: "Nomor handphone",
+         demandOption: true,
+         type: "string",
+      },
+   },
+   handler(argv) {
+      simpanPertanyaan(argv.nama, argv.email, argv.noHP);
+   },
+});
+
+yargs.parse();
