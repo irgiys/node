@@ -4,10 +4,10 @@ const { simpanPertanyaan } = require("./contacts");
 
 yargs.command({
    command: "add",
-   describe: "Menambahkan contact baru",
+   describe: "Nambihan Kontak",
    builder: {
       nama: {
-         describe: "Nama lengkap",
+         describe: "Namana saha ?",
          demandOption: true,
          type: "string",
       },
@@ -17,7 +17,7 @@ yargs.command({
          type: "string",
       },
       noHP: {
-         describe: "Nomor handphone",
+         describe: "Nomber Handphone",
          demandOption: true,
          type: "string",
       },
@@ -26,5 +26,4 @@ yargs.command({
       simpanPertanyaan(argv.nama, argv.email, argv.noHP);
    },
 });
-
 yargs.parse();
