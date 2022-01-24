@@ -1,15 +1,5 @@
 [
   {
-    "nama": "aya",
-    "email": "irgiyas@gmail.com",
-    "noHP": "0895121345"
-  },
-  {
-    "nama": "violet",
-    "email": "vio@gmail.com",
-    "noHP": "08951213411"
-  },
-  {
     "nama": "irgi",
     "email": "irgi@gmail.com",
     "noHP": "08954145155"
@@ -18,5 +8,27 @@
     "nama": "ainfoa",
     "email": "irgia@gmail.com",
     "noHP": "089503131415"
+  },
+  {
+    "nama": "ayaya",
+    "noHP": "08950313143"
+  },
+  {
+    "nama": "yasuo",
+    "email": "irahi@ccr.com",
+    "noHP": "08123141414"
+  },
+  {
+    "nama": "yao",
+    "noHP": "08123141434"
+  },
+  {
+    "nama": "yaso",
+    "noHP": "081233141434"
+  },
+  {
+    "nama": "yansyah",
+    "email": "irgyiad@gmai.com",
+    "noHP": "081233141124"
   }
 ]

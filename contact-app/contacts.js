@@ -28,9 +28,11 @@ const simpanPertanyaan = (nama, email, noHP) => {
          console.log(chalk.red.inverse.bold("Nama sudah ada"));
          return false;
       }
-      if (avaible.email === email) {
-         console.log(chalk.red.inverse.bold("Email sudah ada"));
-         return false;
+      if (avaible.email) {
+         if (avaible.email === email) {
+            console.log(chalk.red.inverse.bold("Email sudah ada"));
+            return false;
+         }
       }
       if (avaible.noHP === noHP) {
          console.log(chalk.red.inverse.bold("Nomor handphone sudah ada"));
@@ -56,46 +58,45 @@ const simpanPertanyaan = (nama, email, noHP) => {
    console.log(chalk.green.inverse.bold("Data sudah ditambahkan ^^"));
 };
 
-// fungsi list kontak
+// fungsi list daftar kontak
 const listContact = () => {
    const contacts = loadContact();
-   console.log(chalk.cyan.inverse.bold("Daftar Kontak : "));
-   contacts.forEach((contact, i) => {
-      console.log(`${i + 1}. ${contact.nama} - ${contact.noHP}`);
+   contacts.forEach((element, i) => {
+      console.log(`${i + 1}. ${element.nama} - ${element.noHP}`);
    });
 };
 
-// fungsi detail kontak
+// fungsi menampilkan detail kontak berdasarkan nama
 const detailContact = (nama) => {
    const contacts = loadContact();
    const contact = contacts.find(
-      (contact) => contact.nama.toLowerCase() === nama.toLowerCase()
+      (kontak) => kontak.nama.toLowerCase() === nama.toLowerCase()
    );
    if (!contact) {
-      console.log(chalk.red.inverse.bold(`${nama} tidak ditemukan`));
+      console.log(chalk.red.inverse.bold(`Nama tidak ditemukan`));
       return false;
    }
-   console.log(chalk.cyan.inverse.bold(contact.nama));
-   console.log(contact.noHP);
-   if (contact.email) {
-      console.log(contact.email);
-   }
+   contact.email
+      ? console.log(
+           chalk.green.inverse.bold(
+              `${contact.nama} - ${contact.noHP} - ${contact.email}`
+           )
+        )
+      : console.log(
+           chalk.green.inverse.bold(`${contact.nama} - ${contact.noHP}`)
+        );
 };
-
-// fungsi hapus kontak
 const deleteContact = (nama) => {
    const contacts = loadContact();
    const newContacts = contacts.filter(
-      (contact) => contact.nama.toLowerCase() !== nama.toLowerCase()
+      (kontak) => kontak.nama.toLowerCase() != nama.toLowerCase()
    );
    if (contacts.length === newContacts.length) {
-      console.log(chalk.red.inverse.bold(`${nama} tidak ditemukan`));
+      console.log(chalk.red.inverse.bold("Nama tidak ditemukan"));
       return false;
    }
    fs.writeFileSync(dataPath, JSON.stringify(newContacts, null, 2));
-   console.log(
-      chalk.green.inverse.bold(`data kontak ${nama} berhasil dihapus`)
-   );
+   console.log(chalk.green.inverse.bold("Data sudah dihapus ^^"));
 };
 module.exports = {
    simpanPertanyaan,

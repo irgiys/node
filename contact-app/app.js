@@ -34,23 +34,23 @@ yargs
    })
    .demandCommand();
 
-// menampilkan daftar semua nama & no hp contact
+// TODO
+// menampilkan daftar semua nama & no hp kontak
 yargs.command({
    command: "list",
-   describe: "Menampilkan semua nama",
+   describe: "Menampilkan semua kontak",
    handler() {
       listContact();
    },
 });
-
-// menampilkan detail kontak
+// menampilkan detail sebuah kontak
 yargs.command({
    command: "detail",
-   describe: "Menampilkan detail sebuah kontak",
+   describe: "Menampilkan detail sebuah kontak berdasarkan nama",
    builder: {
       nama: {
-         describe: "Nama lengkap",
          demandOption: true,
+         describe: "nama",
          type: "string",
       },
    },
@@ -58,15 +58,14 @@ yargs.command({
       detailContact(argv.nama);
    },
 });
-
-// menghapus kontak berdasarkan nama
+// menghapus kontak sesuai dengan namanya
 yargs.command({
    command: "delete",
-   describe: "Menghapus kontak",
+   describe: "Menghapus sebuah kontak berdasarkan nama",
    builder: {
       nama: {
-         describe: "Nama lengkap",
          demandOption: true,
+         describe: "nama",
          type: "string",
       },
    },
