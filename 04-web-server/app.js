@@ -1,10 +1,13 @@
 const http = require("http");
-const fs = require("fs");
 const port = 3000;
+const fs = require("fs");
 
-const renderHTML = (file, res) => {
-   fs.readFile(file, (error, data) => {
-      if (error) {
+const renderHTML = (data, res) => {
+   res.writeHead(200, {
+      "Content-Type": "text/html",
+   });
+   fs.readFile(data, (err, data) => {
+      if (err) {
          res.writeHead(404);
          res.write("Error file not found");
       } else {
@@ -12,11 +15,7 @@ const renderHTML = (file, res) => {
       }
       res.end();
    });
-   res.writeHead(200, {
-      "Content-Type": "text/html",
-   });
 };
-
 http
    .createServer((req, res) => {
       const url = req.url;
@@ -33,5 +32,5 @@ http
       }
    })
    .listen(port, () => {
-      console.log(`Server is listening on port ${port}...`);
+      console.log(`Server is listening at ${port}`);
    });
