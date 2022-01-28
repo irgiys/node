@@ -4,25 +4,32 @@ const port = 3000;
 
 app.get("/", (req, res) => {
    res.sendFile("./index.html", { root: __dirname });
-   // res.json({
-   //    nama: "irgiyansyah",
-   //    email: "irgiyansy@gmail.com",
-   // });
 });
 app.get("/about", (req, res) => {
-   res.sendFile("./about.html", { root: __dirname });
+   res.sendFile("./about", { root: __dirname });
 });
 app.get("/contact", (req, res) => {
-   res.sendFile("./contact.html", { root: __dirname });
+   res.sendFile("./contact", { root: __dirname });
+});
+app.get("/test", (req, res) => {
+   res.send("tesstttt");
+});
+app.get("/json", (req, res) => {
+   res.json({
+      nama: "Irgiyansyah",
+      email: "Irgiyansy@gmail.com",
+   });
 });
 app.get("/product/:id", (req, res) => {
-   res.send(
-      `Product ID: ${req.params.id} <br> Category : ${req.query.category}`
-   );
+   res.send(`Product ID : ${req.params.id}`);
 });
+
+// not found
 app.use("/", (req, res) => {
-   res.send("tesst");
+   res.status(404);
+   res.send("404");
 });
+// listen
 app.listen(port, () => {
-   console.log(`Server listening at http://localhost:${port}...`);
+   console.log(`Server is lesting at http://localhost:${port}`);
 });
