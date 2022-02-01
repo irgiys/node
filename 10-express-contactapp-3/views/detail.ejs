@@ -1,0 +1,30 @@
+<% if (!contact ) { %>
+<div class="alert alert-danger fw-bold" role="alert">
+   Contact tidak di temukan
+   <br />
+   <a href="/contact" class="alert-link fw-normal">Kembali ke daftar contact</a
+   >.
+</div>
+<% } else { %>
+<div class="card" style="width: 18rem">
+   <div class="card-body">
+      <h5 class="card-title"><%= contact.nama %></h5>
+      <h6 class="card-subtitle my-2 text-muted"><%= contact.nohp %></h6>
+      <p class="card-text"><%= contact.email %></p>
+      <a
+         href="/contact/edit/<%= contact.nama %>"
+         class="btn btn-info my-3 badge"
+         >Ubah</a
+      >
+      <a
+         href="/contact/delete/<%= contact.nama %>"
+         class="btn btn-danger my-3 badge"
+         onclick="return confirm(`Yakin?`)"
+         >Hapus</a
+      >
+
+      <a href="/contact" class="card-link d-block">&laquo; Daftar contact</a>
+      <!-- <a href="#" class="card-link">Another link</a> -->
+   </div>
+</div>
+<% } %>
