@@ -1,21 +1,20 @@
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-// connect db
-require("./utils/db");
-const Contact = require("./model/contact");
-
-const app = express();
-const port = 3000;
-
 // export flash
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
+// panggil db
+const Contact = require("./model/contact");
+require("./utils/db");
+
+const app = express();
+const port = 3000;
 
 // set up ejs
+app.use(expressLayouts);
 app.set("view engine", "ejs");
-app.use(expressLayouts); // third party middleware
-app.use(express.static("public")); // builtin middleware
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 // set up flash
@@ -52,6 +51,7 @@ app.get("/about", (req, res) => {
 // halaman contact
 app.get("/contact", async (req, res) => {
    const contacts = await Contact.find();
+   // res.send(contacts);
    res.render("contact", {
       layout: "layouts/main-layout",
       title: "Halaman Contact",
@@ -62,7 +62,6 @@ app.get("/contact", async (req, res) => {
 
 // halaman detail contact
 app.get("/contact/:nama", async (req, res) => {
-   // const contact = findContact(req.params.nama);
    const contact = await Contact.findOne({ nama: req.params.nama });
    res.render("detail", {
       layout: "layouts/main-layout",
@@ -72,5 +71,5 @@ app.get("/contact/:nama", async (req, res) => {
 });
 
 app.listen(port, () => {
-   console.log(`MongoDB Contact app is listen | to http://localhost:${port}`);
+   console.log(`MongoDB Contact app | is listen to http://localhost:${port}`);
 });
